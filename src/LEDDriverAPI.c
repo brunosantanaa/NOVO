@@ -12,7 +12,7 @@ void dimmer(uint8_t value) {
         driver_exec(brightness);
         usleep(INTERVAL);
         brightness += _rate;
-        if(brightness > value) {
+        if((brightness > value && _rate > 0) || (brightness < value && _rate < 0)){
             driver_exec(value);
             break;
         }
@@ -28,7 +28,7 @@ int LEDDriverInit(uint8_t driver) {
 }
 
 int LEDDriverSetValue(uint8_t value) {
-    if (value < 0) return -1;
+    if (value < 0) value = 0;
     if (value > 100) value = 100;
 
     dimmer(value);

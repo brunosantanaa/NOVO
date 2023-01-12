@@ -3,11 +3,17 @@
 
 int main(int argc, char *argv[])
 {
-    LEDDriverInit(I2C);
+    if(LEDDriverInit(I2C) != 0) {
+        printf("Error: driver configuration\n");
+        return -1;
+    }
     LEDDriverSetValue(86);
 
-    LEDDriverInit(PWM);
-    LEDDriverSetValue(73);
+    if(LEDDriverInit(PWM) != 0) {
+        printf("Error: driver configuration\n");
+        return -1;
+    }
+    LEDDriverSetValue(0);
 
     return 0;
 }

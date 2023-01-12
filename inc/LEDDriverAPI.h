@@ -9,7 +9,7 @@
 #define I2C         0
 #define PWM         1
 #define RATE        10
-#define INTERVAL    50000
+#define INTERVAL    50000 //us
 
 int LEDDriverInit(uint8_t driver);
 int LEDDriverSetValue(uint8_t value);

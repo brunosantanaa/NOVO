@@ -7,13 +7,13 @@ int main(int argc, char *argv[])
         printf("Error: driver configuration\n");
         return -1;
     }
-    LEDDriverSetValue(86);
+    LEDDriverSetValue(57);
 
     if(LEDDriverInit(PWM) != 0) {
         printf("Error: driver configuration\n");
         return -1;
     }
-    LEDDriverSetValue(0);
+    LEDDriverSetValue(13);
 
     return 0;
 }

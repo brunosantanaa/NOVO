@@ -6,6 +6,9 @@
 #include "DriverI2C.h"
 #include "DriverPWM.h"
 
+/****************************************************************************
+ * Pre-processor Definitions
+ ****************************************************************************/
 #define I2C         0
 #define PWM         1
 #define RATE        10

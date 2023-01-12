@@ -11,6 +11,9 @@
 #define RATE        10
 #define INTERVAL    50000 //us
 
+/****************************************************************************
+ * Public Function Prototypes
+ ****************************************************************************/
 int LEDDriverInit(uint8_t driver);
 int LEDDriverSetValue(uint8_t value);
 

@@ -8,12 +8,12 @@
  * Pre-processor Definitions
  ****************************************************************************/
 #define ADDRESS 0x0f
-#define I2C_SIZE 1024
+#define I2C_SIZE 255
 
 /****************************************************************************
  * Public Function Prototypes
  ****************************************************************************/
 int I2C_exec(uint8_t value_per);
-int I2C_ic(uint8_t addr, uint16_t value);
+int I2C_ic(uint8_t addr, uint8_t value);
 
 #endif

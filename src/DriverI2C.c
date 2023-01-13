@@ -35,7 +35,7 @@ int I2C_exec(uint8_t value_per) {
 *
 * ***************************************************************************/
 
-int I2C_ic(uint8_t addr, uint16_t value) {
+int I2C_ic(uint8_t addr, uint8_t value) {
     printf("I2C:%d:%d\n", addr, value);
     return 0;
 }

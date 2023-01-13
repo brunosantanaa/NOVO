@@ -8,7 +8,8 @@
 /* Function pointer for driver */
 int (*driver_exec)(uint8_t);
 /* Led brightness state */
-uint8_t led_state = 0;
+uint8_t driver_selected;
+uint8_t led_state[2] = {0, 0};
 
 /****************************************************************************
  * Private Functions Prototypes
@@ -33,7 +34,8 @@ void dimmer(uint8_t value);
 int LEDDriverInit(uint8_t driver) {
     if (driver > 1) return -1;
 
-    driver_exec = (driver == 0)? &I2C_exec : &PWM_exec;
+    driver_selected = driver;
+    driver_exec = (driver == I2C)? &I2C_exec : &PWM_exec;
     return 0;
 }
 /****************************************************************************
@@ -49,7 +51,6 @@ int LEDDriverInit(uint8_t driver) {
 *
 * ***************************************************************************/
 int LEDDriverSetValue(uint8_t value) {
-    printf("val %d\n",value);
     if (value > 100) value = 100;
 
     dimmer(value);
@@ -69,8 +70,8 @@ int LEDDriverSetValue(uint8_t value) {
 *
 * ***************************************************************************/
 void dimmer(uint8_t value) {
-    int _rate = RATE * ((value > led_state) ? 1 : -1);
-    int brightness = led_state;
+    int _rate = RATE * ((value > led_state[driver_selected]) ? 1 : -1);
+    int brightness = led_state[driver_selected];
 
     while(brightness != value) {
         driver_exec(brightness);
@@ -81,5 +82,5 @@ void dimmer(uint8_t value) {
             break;
         }
     }
-    led_state = value;
+    led_state[driver_selected] = value;
 }

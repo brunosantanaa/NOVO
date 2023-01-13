@@ -1,4 +1,6 @@
 #include "DriverI2C.h"
+
+extern I2C_HandleTypeDef hi2c1;
 /****************************************************************************
  * Public Functions
  ****************************************************************************/
@@ -37,5 +39,8 @@ int I2C_exec(uint8_t value_per) {
 
 int I2C_ic(uint8_t addr, uint8_t value) {
     printf("I2C:%d:%d\n", addr, value);
+
+    HAL_I2C_Master_Transmit(&hi2c1, addr, &value, sizeof(value), 50);
+
     return 0;
 }

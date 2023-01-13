@@ -1,5 +1,7 @@
 #include "DriverPWM.h"
 
+extern TIM_HandleTypeDef htim4;
+
 /****************************************************************************
  * Public Functions
  ****************************************************************************/
@@ -33,6 +35,11 @@ int PWM_exec(uint8_t value) {
 *
 * ***************************************************************************/
 int PWM_OUT(uint32_t freq, uint8_t duty) {
-    printf("PWM:%d:%d\n", freq, duty);
+    printf("PWM:%ld:%d\n", freq, duty);
+
+    int value = (int) PRESCALE_COUNTER * (duty / 100.0);
+
+    __HAL_TIM_SET_COMPARE(&htim4, TIM_CHANNEL_4, value);
     return 0;
 }
+

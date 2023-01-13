@@ -1,1 +1,7 @@
-.clangd
+.metadata/
+.settings/
+.cproject
+.project
+.mxproject
+Drivers/
+Debug/

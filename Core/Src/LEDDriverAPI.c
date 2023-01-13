@@ -1,6 +1,4 @@
 #include "LEDDriverAPI.h"
-#include <stdint.h>
-#include <unistd.h>
 
 /****************************************************************************
  * Global
@@ -15,6 +13,7 @@ uint8_t led_state[2] = {0, 0};
  * Private Functions Prototypes
  ****************************************************************************/
 void dimmer(uint8_t value);
+
 
 /****************************************************************************
  * Public Functions
@@ -51,6 +50,7 @@ int LEDDriverInit(uint8_t driver) {
 *
 * ***************************************************************************/
 int LEDDriverSetValue(uint8_t value) {
+    printf("val %d\n",value);
     if (value > 100) value = 100;
 
     dimmer(value);
@@ -75,7 +75,10 @@ void dimmer(uint8_t value) {
 
     while(brightness != value) {
         driver_exec(brightness);
-        usleep(INTERVAL);
+        //usleep(INTERVAL);
+
+        HAL_Delay(INTERVAL);
+
         brightness += _rate;
         if((brightness > value && _rate > 0) || (brightness < value && _rate < 0)){
             driver_exec(value);

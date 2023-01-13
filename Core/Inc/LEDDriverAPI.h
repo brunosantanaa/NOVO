@@ -1,17 +1,26 @@
-#ifndef DRIVER_PWM_H
-#define DRIVER_PWM_H
+#ifndef LED_DRIVER_H
+#define LED_DRIVER_H
 
 #include <stdint.h>
-#include <stdio.h>
+#include <unistd.h>
+
+#include "main.h"
+#include "DriverI2C.h"
+#include "DriverPWM.h"
+
 /****************************************************************************
  * Pre-processor Definitions
  ****************************************************************************/
-#define FREQUENCY_10kHz 10000
+#define I2C         0
+#define PWM         1
+#define RATE        10
+#define INTERVAL    50 //ms
 
 /****************************************************************************
  * Public Function Prototypes
  ****************************************************************************/
-int PWM_exec(uint8_t value);
-int PWM_OUT(uint32_t freq, uint8_t duty);
+int LEDDriverInit(uint8_t driver);
+int LEDDriverSetValue(uint8_t value);
+
 
 #endif

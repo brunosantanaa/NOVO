@@ -1,6 +1,7 @@
 #ifndef DRIVER_I2C_H
 #define DRIVER_I2C_H
 
+#include "main.h"
 #include <stdio.h>
 #include <stdint.h>
 
